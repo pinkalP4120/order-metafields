@@ -4,7 +4,7 @@ const cors = require('cors');
 const Shopify = require('shopify-api-node');
 
 const app = express();
-const port = 5000;
+const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
@@ -34,7 +34,7 @@ app.post('/submit-form', async (req, res) => {
   try {
     // Step 1: Get the Shopify order ID based on the order name (orderId received)
     console.log(`🔍 Fetching Order by Order Name #${orderId}`);
-    
+
     const orders = await shopify.order.list({ limit: 50 });
     const matchedOrder = orders.find(order => order.name === `#${orderId}`);
 
@@ -83,6 +83,6 @@ app.post('/submit-form', async (req, res) => {
 });
 
 // Start the server
-app.listen(port, () => {
-  console.log(`🚀 Server running at http://localhost:${port}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
 });
