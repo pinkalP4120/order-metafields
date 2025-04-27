@@ -5,7 +5,7 @@ const Shopify = require('shopify-api-node');
 const he = require('he'); // Import HTML encoder library for encoding special characters
 
 const app = express();
-const port = 5000;
+const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
@@ -221,7 +221,7 @@ app.post('/submit-form', async (req, res) => {
   }
 });
 
-// Start server
-app.listen(port, () => {
-  console.log(`🚀 Server running at http://localhost:${port}`);
+// Start the server
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
 });
